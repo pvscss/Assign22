@@ -1,0 +1,479 @@
+> epi_r <- read_csv("D:/R/Sess21/epi_r.csv/epi_r.csv")
+> View(epi_r)
+> epi_r$protein[is.na(epi_r$protein)]<-mean(epi_r$protein,na.rm = T)
+> epi_r$fat[is.na(epi_r$fat)]<-mean(epi_r$fat,na.rm = T)
+> epi_r$sodium[is.na(epi_r$sodium)]<-mean(epi_r$sodium,na.rm = T)
+> epi_r$calories[is.na(epi_r$calories)]<-mean(epi_r$calories,na.rm = T)
+> library(cluster)
+> library(factoextra)
+> set.seed(123)
+> rec<-sample(1:15,15)
+> rec_df1<-epi_r[rec, ]
+> head(rec_df1,3)
+# A tibble: 3 x 680
+  title                rating calories protein   fat sodium `#cakeweek` `#wasteless`
+  <chr>                 <dbl>    <dbl>   <dbl> <dbl>  <dbl>       <dbl>        <dbl>
+1 Spinach Noodle Cass~   3.12     547      20    32    452            0            0
+2 Spicy Noodle Soup      4.38    6323.    100.  347.  6226.           0            0
+3 The Best Blts          4.38     948      19    79   1042            0            0
+# ... with 672 more variables: `22-minute meals` <dbl>, `3-ingredient
+#   recipes` <dbl>, `30 days of groceries` <dbl>, `advance prep required` <dbl>,
+#   alabama <dbl>, alaska <dbl>, alcoholic <dbl>, almond <dbl>, amaretto <dbl>,
+#   anchovy <dbl>, anise <dbl>, anniversary <dbl>, `anthony bourdain` <dbl>,
+#   aperitif <dbl>, appetizer <dbl>, apple <dbl>, `apple juice` <dbl>,
+#   apricot <dbl>, arizona <dbl>, artichoke <dbl>, arugula <dbl>, `asian
+#   pear` <dbl>, asparagus <dbl>, aspen <dbl>, atlanta <dbl>, australia <dbl>,
+#   avocado <dbl>, `back to school` <dbl>, `backyard bbq` <dbl>, bacon <dbl>,
+#   bake <dbl>, banana <dbl>, barley <dbl>, basil <dbl>, bass <dbl>, `bastille
+#   day` <dbl>, bean <dbl>, beef <dbl>, `beef rib` <dbl>, `beef shank` <dbl>, `beef
+#   tenderloin` <dbl>, beer <dbl>, beet <dbl>, `bell pepper` <dbl>, berry <dbl>,
+#   `beverly hills` <dbl>, birthday <dbl>, biscuit <dbl>, bitters <dbl>,
+#   blackberry <dbl>, blender <dbl>, `blue cheese` <dbl>, blueberry <dbl>,
+#   boil <dbl>, `bok choy` <dbl>, `bon appétit` <dbl>, `bon app??tit` <dbl>,
+#   boston <dbl>, bourbon <dbl>, braise <dbl>, bran <dbl>, brandy <dbl>,
+#   bread <dbl>, breadcrumbs <dbl>, breakfast <dbl>, brie <dbl>, brine <dbl>,
+#   brisket <dbl>, broccoli <dbl>, `broccoli rabe` <dbl>, broil <dbl>,
+#   brooklyn <dbl>, `brown rice` <dbl>, brownie <dbl>, brunch <dbl>, `brussel
+#   sprout` <dbl>, buffalo <dbl>, buffet <dbl>, bulgaria <dbl>, bulgur <dbl>,
+#   burrito <dbl>, butter <dbl>, buttermilk <dbl>, `butternut squash` <dbl>,
+#   `butterscotch/caramel` <dbl>, cabbage <dbl>, cake <dbl>, california <dbl>,
+#   calvados <dbl>, cambridge <dbl>, campari <dbl>, camping <dbl>, canada <dbl>,
+#   candy <dbl>, `candy thermometer` <dbl>, cantaloupe <dbl>, capers <dbl>,
+#   caraway <dbl>, cardamom <dbl>, carrot <dbl>, ...
+> rec_df1_scaled<-scale(rec_df1)
+Error in colMeans(x, na.rm = TRUE) : 'x' must be numeric
+> head(rec_df1_scaled,3)
+Error in head(rec_df1_scaled, 3) : object 'rec_df1_scaled' not found
+> epi_r<-epi_r1
+Error: object 'epi_r1' not found
+> epi_r <- read_csv("D:/R/Sess21/epi_r.csv/epi_r.csv")
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  title = col_character()
+)
+See spec(...) for full column specifications.
+> # Imputing the values
+> epi_r$title<-as.numeric(as.factor(epi_r$title))
+> epi_r$protein[is.na(epi_r$protein)]<-mean(epi_r$protein,na.rm = T)
+> epi_r$fat[is.na(epi_r$fat)]<-mean(epi_r$fat,na.rm = T)
+> epi_r$sodium[is.na(epi_r$sodium)]<-mean(epi_r$sodium,na.rm = T)
+> epi_r$calories[is.na(epi_r$calories)]<-mean(epi_r$calories,na.rm = T)
+> epi_r<-na.omit(epi_r1)
+Error in na.omit(epi_r1) : object 'epi_r1' not found
+> epi_r<-na.omit(epi_r)
+> library(cluster)
+> library(factoextra)
+> set.seed(123)
+> rec<-sample(1:15,15)
+> rec_df1<-epi_r[rec, ]
+> head(rec_df1,3)
+# A tibble: 3 x 680
+  title rating calories protein   fat sodium `#cakeweek` `#wasteless`
+  <dbl>  <dbl>    <dbl>   <dbl> <dbl>  <dbl>       <dbl>        <dbl>
+1 15252   3.12     547      20    32    452            0            0
+2 15130   4.38    6323.    100.  347.  6226.           0            0
+3 16217   4.38     948      19    79   1042            0            0
+# ... with 672 more variables: `22-minute meals` <dbl>, `3-ingredient
+#   recipes` <dbl>, `30 days of groceries` <dbl>, `advance prep required` <dbl>,
+#   alabama <dbl>, alaska <dbl>, alcoholic <dbl>, almond <dbl>, amaretto <dbl>,
+#   anchovy <dbl>, anise <dbl>, anniversary <dbl>, `anthony bourdain` <dbl>,
+#   aperitif <dbl>, appetizer <dbl>, apple <dbl>, `apple juice` <dbl>,
+#   apricot <dbl>, arizona <dbl>, artichoke <dbl>, arugula <dbl>, `asian
+#   pear` <dbl>, asparagus <dbl>, aspen <dbl>, atlanta <dbl>, australia <dbl>,
+#   avocado <dbl>, `back to school` <dbl>, `backyard bbq` <dbl>, bacon <dbl>,
+#   bake <dbl>, banana <dbl>, barley <dbl>, basil <dbl>, bass <dbl>, `bastille
+#   day` <dbl>, bean <dbl>, beef <dbl>, `beef rib` <dbl>, `beef shank` <dbl>, `beef
+#   tenderloin` <dbl>, beer <dbl>, beet <dbl>, `bell pepper` <dbl>, berry <dbl>,
+#   `beverly hills` <dbl>, birthday <dbl>, biscuit <dbl>, bitters <dbl>,
+#   blackberry <dbl>, blender <dbl>, `blue cheese` <dbl>, blueberry <dbl>,
+#   boil <dbl>, `bok choy` <dbl>, `bon appétit` <dbl>, `bon app??tit` <dbl>,
+#   boston <dbl>, bourbon <dbl>, braise <dbl>, bran <dbl>, brandy <dbl>,
+#   bread <dbl>, breadcrumbs <dbl>, breakfast <dbl>, brie <dbl>, brine <dbl>,
+#   brisket <dbl>, broccoli <dbl>, `broccoli rabe` <dbl>, broil <dbl>,
+#   brooklyn <dbl>, `brown rice` <dbl>, brownie <dbl>, brunch <dbl>, `brussel
+#   sprout` <dbl>, buffalo <dbl>, buffet <dbl>, bulgaria <dbl>, bulgur <dbl>,
+#   burrito <dbl>, butter <dbl>, buttermilk <dbl>, `butternut squash` <dbl>,
+#   `butterscotch/caramel` <dbl>, cabbage <dbl>, cake <dbl>, california <dbl>,
+#   calvados <dbl>, cambridge <dbl>, campari <dbl>, camping <dbl>, canada <dbl>,
+#   candy <dbl>, `candy thermometer` <dbl>, cantaloupe <dbl>, capers <dbl>,
+#   caraway <dbl>, cardamom <dbl>, carrot <dbl>, ...
+> rec_df1_scaled<-scale(rec_df1)
+> head(rec_df1_scaled,3)
+         title     rating   calories    protein        fat     sodium #cakeweek
+[1,] 0.9903887 -1.2740441 -0.5326835 -0.4233094 -0.5253866 -0.7032069       NaN
+     #wasteless 22-minute meals 3-ingredient recipes 30 days of groceries
+[1,]        NaN             NaN                  NaN                  NaN
+     advance prep required alabama alaska alcoholic almond amaretto anchovy anise
+[1,]                   NaN     NaN    NaN       NaN    NaN      NaN     NaN   NaN
+     anniversary anthony bourdain aperitif appetizer      apple apple juice apricot
+[1,]         NaN              NaN      NaN       NaN -0.2581989         NaN     NaN
+     arizona artichoke arugula asian pear  asparagus aspen atlanta australia avocado
+[1,]     NaN       NaN     NaN        NaN -0.2581989   NaN     NaN       NaN     NaN
+     back to school backyard bbq      bacon       bake     banana barley      basil
+[1,]            NaN          NaN -0.2581989  1.9321836 -0.2581989    NaN -0.2581989
+     bass bastille day       bean       beef beef rib beef shank beef tenderloin
+[1,]  NaN   -0.2581989 -0.2581989 -0.2581989      NaN        NaN      -0.2581989
+     beer beet bell pepper berry beverly hills   birthday biscuit bitters blackberry
+[1,]  NaN  NaN         NaN   NaN           NaN -0.2581989     NaN     NaN        NaN
+     blender blue cheese blueberry       boil bok choy bon appétit
+[1,]     NaN         NaN       NaN -0.2581989      NaN   0.7888106
+                   bon app??tit boston bourbon braise bran     brandy bread
+[1,]                        NaN    NaN     NaN    NaN  NaN -0.2581989   NaN
+     breadcrumbs  breakfast brie brine brisket broccoli broccoli rabe broil brooklyn
+[1,]         NaN -0.2581989  NaN   NaN     NaN      NaN           NaN   NaN      NaN
+     brown rice brownie brunch brussel sprout buffalo buffet bulgaria bulgur burrito
+[1,]        NaN     NaN    NaN            NaN     NaN    NaN      NaN    NaN     NaN
+     butter buttermilk butternut squash butterscotch/caramel cabbage       cake
+[1,]    NaN        NaN              NaN                  NaN     NaN -0.2581989
+     california calvados cambridge campari camping canada candy candy thermometer
+[1,]  3.6147845      NaN       NaN     NaN     NaN    NaN   NaN               NaN
+     cantaloupe capers caraway cardamom     carrot cashew casserole/gratin
+[1,]        NaN    NaN     NaN      NaN -0.2581989    NaN              NaN
+     cauliflower caviar celery chambord champagne chard chartreuse cheddar
+[1,]         NaN    NaN    NaN      NaN       NaN   NaN        NaN     NaN
+         cheese cherry chestnut chicago    chicken chickpea chile chile pepper chili
+[1,]  3.6147845    NaN      NaN     NaN -0.2581989      NaN   NaN          NaN   NaN
+          chill      chive  chocolate christmas christmas eve cilantro cinco de mayo
+[1,] -0.2581989 -0.2581989 -0.2581989       NaN           NaN      NaN           NaN
+     cinnamon citrus clam clove cobbler/crumble cocktail cocktail party    coconut
+[1,]      NaN    NaN  NaN   NaN             NaN      NaN     -0.2581989 -0.2581989
+     cod coffee coffee grinder cognac/armagnac collard greens colorado columbus
+[1,] NaN    NaN            NaN             NaN            NaN      NaN      NaN
+     condiment condiment/spread connecticut cook like a diner cookbook critic
+[1,]       NaN              NaN         NaN               NaN             NaN
+         cookie cookies coriander corn cornmeal costa mesa cottage cheese couscous
+[1,] -0.2581989     NaN       NaN  NaN      NaN        NaN            NaN      NaN
+     crab cranberry cranberry sauce cream cheese créme de cacao crêpe
+[1,]  NaN       NaN             NaN          NaN            NaN   NaN
+                   cr??me de cacao cuba cucumber cumin cupcake currant curry custard
+[1,]                           NaN  NaN      NaN   NaN     NaN     NaN   NaN     NaN
+          dairy dairy free dallas date deep-fry denver    dessert digestif dill
+[1,]  1.9321836 -0.5825753    NaN  NaN      NaN    NaN -0.2581989      NaN  NaN
+         dinner dip diwali dominican republic dorie greenspan double boiler
+[1,] -0.2581989 NaN    NaN                NaN             NaN           NaN
+     dried fruit drink drinks duck     easter eau de vie edible gift        egg
+[1,]  -0.2581989   NaN    NaN  NaN -0.2581989        NaN         NaN -0.2581989
+     egg nog eggplant egypt emeril lagasse endive engagement party england
+[1,]     NaN      NaN   NaN            NaN    NaN              NaN     NaN
+     entertaining epi + ushg epi loves the microwave escarole       fall
+[1,]          NaN        NaN                     NaN      NaN  2.4630604
+     family reunion fat free father's day     fennel feta fig       fish
+[1,]            NaN      NaN   -0.2581989 -0.2581989  NaN NaN -0.2581989
+     flaming hot summer flat bread florida fontina food processor fortified wine
+[1,]                NaN        NaN     NaN     NaN     -0.3789324            NaN
+     fourth of july france frangelico frankenrecipe freeze/chill freezer food
+[1,]            NaN    NaN        NaN           NaN          NaN          NaN
+     friendsgiving frittata fritter frozen dessert      fruit fruit juice fry game
+[1,]           NaN      NaN     NaN            NaN -0.4830459         NaN NaN  NaN
+         garlic georgia germany gin     ginger goat cheese goose gouda    gourmet
+[1,] -0.3789324     NaN     NaN NaN -0.3789324         NaN   NaN   NaN -0.6831301
+     graduation grains grand marnier granola grape grapefruit grappa green bean
+[1,]        NaN    NaN           NaN     NaN   NaN        NaN    NaN        NaN
+     green onion/scallion grill grill/barbecue ground beef ground lamb guam guava
+[1,]                  NaN   NaN            NaN         NaN         NaN  NaN   NaN
+     haiti halibut halloween        ham hamburger hanukkah harpercollins hawaii
+[1,]   NaN     NaN       NaN -0.3789324       NaN      NaN           NaN    NaN
+     hazelnut healdsburg    healthy herb high fiber hollywood hominy/cornmeal/masa
+[1,]      NaN        NaN -0.3789324  NaN -0.2581989       NaN                  NaN
+     honey honeydew hors d'oeuvre horseradish hot drink hot pepper house & garden
+[1,]   NaN      NaN           NaN         NaN       NaN        NaN            NaN
+     house cocktail houston hummus ice cream ice cream machine iced coffee iced tea
+[1,]            NaN     NaN    NaN       NaN               NaN         NaN      NaN
+     idaho illinois indiana iowa ireland israel italy jalapeño jam or jelly jamaica
+[1,]   NaN      NaN     NaN  NaN     NaN    NaN   NaN      NaN          NaN     NaN
+     japan jerusalem artichoke juicer jícama kahlúa kale kansas kansas city kentucky
+[1,]   NaN                 NaN    NaN    NaN    NaN  NaN    NaN         NaN      NaN
+     kentucky derby kid-friendly kidney friendly kirsch kitchen olympics kiwi
+[1,]            NaN   -0.4830459             NaN    NaN              NaN  NaN
+         kosher kosher for passover    kumquat kwanzaa labor day lamb lamb chop
+[1,] -0.3789324                 NaN -0.2581989     NaN       NaN  NaN       NaN
+     lamb shank lancaster las vegas lasagna leafy green leek legume lemon
+[1,]        NaN       NaN       NaN     NaN         NaN  NaN    NaN   NaN
+     lemon juice lemongrass     lentil    lettuce lima bean lime lime juice
+[1,]         NaN -0.2581989 -0.2581989 -0.3789324       NaN  NaN        NaN
+     lingonberry liqueur lobster london long beach los angeles louisiana louisville
+[1,]         NaN     NaN     NaN    NaN        NaN         NaN       NaN        NaN
+        low cal   low carb low cholesterol    low fat low sodium low sugar
+[1,] -0.2581989 -0.2581989             NaN -0.3789324        NaN       NaN
+     low/no sugar lunar new year      lunch lychee macadamia nut macaroni and cheese
+[1,]          NaN            NaN -0.2581989    NaN           NaN                 NaN
+     maine mandoline mango maple syrup mardi gras margarita marinade marinate
+[1,]   NaN       NaN   NaN         NaN        NaN       NaN      NaN      NaN
+     marsala marscarpone marshmallow martini maryland massachusetts mayonnaise meat
+[1,]     NaN         NaN         NaN     NaN      NaN    -0.2581989 -0.2581989  NaN
+     meatball meatloaf melon mexico mezcal miami michigan microwave midori
+[1,]      NaN      NaN   NaN    NaN    NaN   NaN      NaN       NaN    NaN
+     milk/cream minneapolis minnesota mint mississippi missouri mixer molasses
+[1,] -0.2581989         NaN       NaN  NaN         NaN      NaN   NaN      NaN
+     monterey jack mortar and pestle mother's day mozzarella muffin mushroom mussel
+[1,]           NaN               NaN          NaN        NaN    NaN      NaN    NaN
+        mustard mustard greens nancy silverton nebraska nectarine new hampshire
+[1,] -0.3789324            NaN             NaN      NaN       NaN           NaN
+     new jersey new mexico new orleans new year's day new year's eve   new york
+[1,]        NaN        NaN         NaN            NaN     -0.2581989 -0.2581989
+     no meat, no problem no sugar added    no-cook non-alcoholic noodle
+[1,]                 NaN     -0.2581989 -0.2581989           NaN    NaN
+     north carolina nut     nutmeg oat oatmeal octopus ohio oklahoma okra
+[1,]            NaN NaN -0.2581989 NaN     NaN     NaN  NaN      NaN  NaN
+     oktoberfest      olive omelet one-pot meal      onion orange orange juice
+[1,]         NaN -0.2581989    NaN          NaN -0.2581989    NaN          NaN
+     oregano oregon organic orzo oscars oyster pacific palisades paleo pan-fry
+[1,]     NaN    NaN     NaN  NaN    NaN    NaN               NaN   NaN     NaN
+     pancake papaya paprika parade paris parmesan parsley parsnip      party
+[1,]     NaN    NaN     NaN    NaN   NaN      NaN     NaN     NaN -0.2581989
+     pasadena passion fruit passover      pasta pasta maker pastry        pea
+[1,]      NaN           NaN      NaN  3.6147845         NaN    NaN -0.2581989
+          peach peanut peanut butter peanut free pear pecan pennsylvania     pepper
+[1,] -0.2581989    NaN    -0.2581989  -0.5825753  NaN   NaN          NaN -0.2581989
+     pernod persian new year persimmon peru pescatarian philippines
+[1,]    NaN              NaN       NaN  NaN  -0.3789324         NaN
+     phyllo/puff pastry dough pickles     picnic pie pine nut pineapple pistachio
+[1,]                      NaN     NaN -0.2581989 NaN      NaN       NaN       NaN
+     pittsburgh pizza plantain plum poach poblano poker/game night pomegranate
+[1,]        NaN   NaN      NaN  NaN   NaN     NaN              NaN         NaN
+     pomegranate juice poppy       pork pork chop pork rib pork tenderloin
+[1,]               NaN   NaN -0.2581989       NaN      NaN             NaN
+           port portland pot pie     potato potato salad potluck poultry
+[1,] -0.2581989      NaN     NaN -0.4830459          NaN     NaN     NaN
+     poultry sausage pressure cooker prosciutto providence prune pumpkin punch purim
+[1,]             NaN             NaN        NaN        NaN   NaN     NaN   NaN   NaN
+     quail quiche quick & easy quick and healthy quince quinoa rabbit rack of lamb
+[1,]   NaN    NaN    1.3662601               NaN    NaN    NaN    NaN          NaN
+     radicchio radish raisin ramadan ramekin raspberry raw red wine rhode island
+[1,]       NaN    NaN    NaN     NaN     NaN       NaN NaN      NaN          NaN
+     rhubarb rice ricotta roast root vegetable   rosemary rosh hashanah/yom kippur
+[1,]     NaN  NaN     NaN   NaN            NaN -0.2581989                      NaN
+     rosé rub rum rutabaga rye saffron sage sake      salad salad dressing salmon
+[1,]  NaN NaN NaN      NaN NaN     NaN  NaN  NaN -0.3789324            NaN    NaN
+     salsa san francisco   sandwich sandwich theory sangria santa monica sardine
+[1,]   NaN           NaN -0.3789324             NaN     NaN          NaN     NaN
+          sauce sausage      sauté scallop scotch seafood seattle seed self semolina
+[1,] -0.2581989     NaN -0.4830459     NaN    NaN     NaN     NaN  NaN  NaN      NaN
+     sesame sesame oil shallot shavuot shellfish sherry shower     shrimp       side
+[1,]    NaN        NaN     NaN     NaN       NaN    NaN    NaN -0.2581989  1.9321836
+         simmer skewer slow cooker smoker smoothie snapper sorbet soufflé/meringue
+[1,] -0.3789324    NaN         NaN    NaN      NaN     NaN    NaN              NaN
+      soup/stew sour cream sourdough south carolina soy   soy free  soy sauce spain
+[1,] -0.3789324        NaN       NaN            NaN NaN -0.5825753 -0.2581989   NaN
+     sparkling wine spice    spinach spirit     spring spritzer squash squid
+[1,]            NaN   NaN -0.2581989    NaN -0.4830459      NaN    NaN   NaN
+     st. louis st. patrick's day steak steam stew   stir-fry stock strawberry
+[1,]       NaN               NaN   NaN   NaN  NaN -0.2581989   NaN        NaN
+     stuffing/dressing sugar conscious sugar snap pea sukkot     summer super bowl
+[1,]               NaN      -0.2581989     -0.2581989    NaN -0.3789324        NaN
+     suzanne goin sweet potato/yam swiss cheese switzerland swordfish taco
+[1,]          NaN       -0.2581989          NaN         NaN       NaN  NaN
+     tailgating tamarind tangerine tapioca tarragon tart tea tennessee tequila
+[1,]        NaN      NaN       NaN     NaN      NaN  NaN NaN       NaN     NaN
+     tested & improved texas thanksgiving thyme tilapia tofu tomatillo     tomato
+[1,]               NaN   NaN   -0.2581989   NaN     NaN  NaN       NaN -0.4830459
+     tortillas tree nut tree nut free triple sec tropical fruit trout tuna turnip
+[1,]       NaN      NaN    -0.5825753        NaN     -0.2581989   NaN  NaN    NaN
+     utah valentine's day vanilla veal vegan  vegetable vegetarian venison vermont
+[1,]  NaN             NaN     NaN  NaN   NaN  1.9321836  1.9321836     NaN     NaN
+     vermouth vinegar virginia vodka waffle walnut wasabi washington
+[1,]      NaN     NaN      NaN   NaN    NaN    NaN    NaN        NaN
+     washington, d.c. watercress watermelon wedding weelicious west virginia
+[1,]              NaN        NaN        NaN     NaN        NaN           NaN
+     westwood wheat/gluten-free whiskey white wine whole wheat wild rice windsor
+[1,]      NaN        -0.4830459     NaN        NaN         NaN       NaN     NaN
+     wine     winter wisconsin wok yellow squash yogurt yonkers yuca zucchini
+[1,]  NaN -0.3789324       NaN NaN           NaN    NaN     NaN  NaN      NaN
+     cookbooks leftovers snack snack week     turkey
+[1,]       NaN       NaN   NaN        NaN -0.2581989
+ [ reached getOption("max.print") -- omitted 2 rows ]
+> fviz_nbclust(rec_df1,kmeans,method = 'wss')+geom_vline(xintercept=4,linetype=5,col='red')
+> set.seed(123)
+> km.res<-kmeans(rec_df1,4,nstart = 25)
+> km.res
+K-means clustering with 4 clusters of sizes 3, 4, 3, 5
+
+Cluster means:
+     title rating  calories   protein       fat    sodium #cakeweek #wasteless
+1  1337.00  4.375  447.6667  13.66667  27.66667  684.6667         0          0
+  22-minute meals 3-ingredient recipes 30 days of groceries advance prep required
+1               0                    0                    0                     0
+  alabama alaska alcoholic almond amaretto anchovy anise anniversary
+1       0      0         0      0        0       0     0           0
+  anthony bourdain aperitif appetizer apple apple juice apricot arizona artichoke
+1                0        0         0   0.0           0       0       0         0
+  arugula asian pear asparagus aspen atlanta australia avocado back to school
+1       0          0      0.00     0       0         0       0              0
+  backyard bbq     bacon      bake    banana barley     basil bass bastille day bean
+1            0 0.0000000 0.6666667 0.3333333      0 0.0000000    0    0.3333333  0.0
+  beef beef rib beef shank beef tenderloin beer beet bell pepper berry beverly hills
+1  0.0        0          0       0.3333333    0    0           0     0             0
+   birthday biscuit bitters blackberry blender blue cheese blueberry boil bok choy
+1 0.3333333       0       0          0       0           0         0 0.00        0
+  bon appétit               bon app??tit boston bourbon braise bran    brandy bread
+1         1.0                          0      0       0      0    0 0.3333333     0
+  breadcrumbs breakfast brie brine brisket broccoli broccoli rabe broil brooklyn
+1           0      0.00    0     0       0        0             0     0        0
+  brown rice brownie brunch brussel sprout buffalo buffet bulgaria bulgur burrito
+1          0       0      0              0       0      0        0      0       0
+  butter buttermilk butternut squash butterscotch/caramel cabbage      cake
+1      0          0                0                    0       0 0.3333333
+  california calvados cambridge campari camping canada candy candy thermometer
+1  0.0000000        0         0       0       0      0     0                 0
+  cantaloupe capers caraway cardamom carrot cashew casserole/gratin cauliflower
+1          0      0       0        0   0.00      0                0           0
+  caviar celery chambord champagne chard chartreuse cheddar    cheese cherry
+1      0      0        0         0     0          0       0 0.0000000      0
+  chestnut chicago chicken chickpea chile chile pepper chili     chill chive
+1        0       0    0.00        0     0            0     0 0.3333333   0.0
+  chocolate christmas christmas eve cilantro cinco de mayo cinnamon citrus clam
+1 0.3333333         0             0        0             0        0      0    0
+  clove cobbler/crumble cocktail cocktail party coconut cod coffee coffee grinder
+1     0               0        0           0.00    0.00   0      0              0
+  cognac/armagnac collard greens colorado columbus condiment condiment/spread
+1               0              0        0        0         0                0
+  connecticut cook like a diner cookbook critic cookie cookies coriander corn
+1           0                 0               0    0.0       0         0    0
+  cornmeal costa mesa cottage cheese couscous crab cranberry cranberry sauce
+1        0          0              0        0    0         0               0
+  cream cheese créme de cacao crêpe               cr??me de cacao cuba cucumber
+1            0              0     0                             0    0        0
+  cumin cupcake currant curry custard     dairy dairy free dallas date deep-fry
+1     0       0       0     0       0 0.0000000       0.00      0    0        0
+  denver   dessert digestif dill dinner dip diwali dominican republic
+1      0 0.3333333        0    0   0.00   0      0                  0
+  dorie greenspan double boiler dried fruit drink drinks duck easter eau de vie
+1               0             0   0.3333333     0      0    0   0.00          0
+  edible gift  egg egg nog eggplant egypt emeril lagasse endive engagement party
+1           0 0.00       0        0     0              0      0                0
+  england entertaining epi + ushg epi loves the microwave escarole      fall
+1       0            0          0                       0        0 0.0000000
+  family reunion fat free father's day fennel feta fig fish flaming hot summer
+1              0        0    0.3333333    0.0    0   0 0.00                  0
+  flat bread florida fontina food processor fortified wine fourth of july france
+1          0       0       0      0.3333333              0              0      0
+  frangelico frankenrecipe freeze/chill freezer food friendsgiving frittata fritter
+1          0             0            0            0             0        0       0
+  frozen dessert     fruit fruit juice fry game    garlic georgia germany gin ginger
+1              0 0.3333333           0   0    0 0.3333333       0       0   0   0.00
+  goat cheese goose gouda gourmet graduation grains grand marnier granola grape
+1           0     0     0     0.0          0      0             0       0     0
+  grapefruit grappa green bean green onion/scallion grill grill/barbecue ground beef
+1          0      0          0                    0     0              0           0
+  ground lamb guam guava haiti halibut halloween  ham hamburger hanukkah
+1           0    0     0     0       0         0 0.00         0        0
+  harpercollins hawaii hazelnut healdsburg healthy herb high fiber hollywood
+1             0      0        0          0     0.0    0       0.00         0
+  hominy/cornmeal/masa honey honeydew hors d'oeuvre horseradish hot drink hot pepper
+1                    0     0        0             0           0         0          0
+  house & garden house cocktail houston hummus ice cream ice cream machine
+1              0              0       0      0         0                 0
+  iced coffee iced tea idaho illinois indiana iowa ireland israel italy jalapeño
+1           0        0     0        0       0    0       0      0     0        0
+  jam or jelly jamaica japan jerusalem artichoke juicer jícama kahlúa kale kansas
+1            0       0     0                   0      0      0      0    0      0
+  kansas city kentucky kentucky derby kid-friendly kidney friendly kirsch
+1           0        0              0    0.3333333               0      0
+  kitchen olympics kiwi    kosher kosher for passover kumquat kwanzaa labor day lamb
+1                0    0 0.3333333                   0    0.00       0         0    0
+  lamb chop lamb shank lancaster las vegas lasagna leafy green leek legume lemon
+1         0          0         0         0       0           0    0      0     0
+  lemon juice lemongrass lentil   lettuce lima bean lime lime juice lingonberry
+1           0       0.00    0.0 0.0000000         0    0          0           0
+  liqueur lobster london long beach los angeles louisiana louisville low cal
+1       0       0      0          0           0         0          0    0.00
+   low carb low cholesterol low fat low sodium low sugar low/no sugar lunar new year
+1 0.3333333               0     0.0          0         0            0              0
+  lunch lychee macadamia nut macaroni and cheese maine mandoline mango maple syrup
+1   0.0      0             0                   0     0         0     0           0
+  mardi gras margarita marinade marinate marsala marscarpone marshmallow martini
+1          0         0        0        0       0           0           0       0
+  maryland massachusetts mayonnaise meat meatball meatloaf melon mexico mezcal miami
+1        0     0.3333333        0.0    0        0        0     0      0      0     0
+  michigan microwave midori milk/cream minneapolis minnesota mint mississippi
+1        0         0      0  0.0000000           0         0    0           0
+  missouri mixer molasses monterey jack mortar and pestle mother's day mozzarella
+1        0     0        0             0                 0            0          0
+  muffin mushroom mussel mustard mustard greens nancy silverton nebraska nectarine
+1      0        0      0     0.0              0               0        0         0
+  new hampshire new jersey new mexico new orleans new year's day new year's eve
+1             0          0          0           0              0      0.3333333
+  new york no meat, no problem no sugar added no-cook non-alcoholic noodle
+1      0.0                   0           0.00    0.00             0      0
+  north carolina nut    nutmeg oat oatmeal octopus ohio oklahoma okra oktoberfest
+1              0   0 0.0000000   0       0       0    0        0    0           0
+  olive omelet one-pot meal     onion orange orange juice oregano oregon organic
+1  0.00      0            0 0.3333333      0            0       0      0       0
+  orzo oscars oyster pacific palisades paleo pan-fry pancake papaya paprika parade
+1    0      0      0                 0     0       0       0      0       0      0
+  paris parmesan parsley parsnip     party pasadena passion fruit passover     pasta
+1     0        0       0       0 0.3333333        0             0        0 0.0000000
+  pasta maker pastry pea peach peanut peanut butter peanut free pear pecan
+1           0      0 0.0   0.0      0     0.3333333        0.00    0     0
+  pennsylvania pepper pernod persian new year persimmon peru pescatarian philippines
+1            0   0.00      0                0         0    0   0.3333333           0
+  phyllo/puff pastry dough pickles picnic pie pine nut pineapple pistachio
+1                        0       0    0.0   0        0         0         0
+  pittsburgh pizza plantain plum poach poblano poker/game night pomegranate
+1          0     0        0    0     0       0                0           0
+  pomegranate juice poppy      pork pork chop pork rib pork tenderloin      port
+1                 0     0 0.3333333         0        0               0 0.3333333
+  portland pot pie potato potato salad potluck poultry poultry sausage
+1        0       0   0.00            0       0       0               0
+  pressure cooker prosciutto providence prune pumpkin punch purim quail quiche
+1               0          0          0     0       0     0     0     0      0
+  quick & easy quick and healthy quince quinoa rabbit rack of lamb radicchio radish
+1    0.3333333                 0      0      0      0            0         0      0
+  raisin ramadan ramekin raspberry raw red wine rhode island rhubarb rice ricotta
+1      0       0       0         0   0        0            0       0    0       0
+  roast root vegetable  rosemary rosh hashanah/yom kippur rosé rub rum rutabaga rye
+1     0              0 0.0000000                        0    0   0   0        0   0
+  saffron sage sake salad salad dressing salmon salsa san francisco  sandwich
+1       0    0    0  0.00              0      0     0             0 0.0000000
+  sandwich theory sangria santa monica sardine sauce sausage     sauté scallop
+1               0       0            0       0   0.0       0 0.3333333       0
+  scotch seafood seattle seed self semolina sesame sesame oil shallot shavuot
+1      0       0       0    0    0        0      0          0       0       0
+  shellfish sherry shower shrimp      side    simmer skewer slow cooker smoker
+1         0      0      0   0.00 0.0000000 0.0000000      0           0      0
+  smoothie snapper sorbet soufflé/meringue soup/stew sour cream sourdough
+1        0       0      0                0      0.00          0         0
+  south carolina soy  soy free soy sauce spain sparkling wine spice spinach spirit
+1              0   0 0.3333333       0.0     0              0     0    0.00      0
+  spring spritzer squash squid st. louis st. patrick's day steak steam stew stir-fry
+1    0.0        0      0     0         0                 0     0     0    0      0.0
+  stock strawberry stuffing/dressing sugar conscious sugar snap pea sukkot    summer
+1     0          0                 0             0.0           0.00      0 0.0000000
+  super bowl suzanne goin sweet potato/yam swiss cheese switzerland swordfish taco
+1          0            0        0.0000000            0           0         0    0
+  tailgating tamarind tangerine tapioca tarragon tart tea tennessee tequila
+1          0        0         0       0        0    0   0         0       0
+  tested & improved texas thanksgiving thyme tilapia tofu tomatillo    tomato
+1                 0     0    0.0000000     0       0    0         0 0.0000000
+  tortillas tree nut tree nut free triple sec tropical fruit trout tuna turnip utah
+1         0        0     0.3333333          0      0.3333333     0    0      0    0
+  valentine's day vanilla veal vegan vegetable vegetarian venison vermont vermouth
+1               0       0    0     0 0.0000000  0.3333333       0       0        0
+  vinegar virginia vodka waffle walnut wasabi washington washington, d.c. watercress
+1       0        0     0      0      0      0          0                0          0
+  watermelon wedding weelicious west virginia westwood wheat/gluten-free whiskey
+1          0       0          0             0        0         0.3333333       0
+  white wine whole wheat wild rice windsor wine    winter wisconsin wok
+1          0           0         0       0    0 0.3333333         0   0
+  yellow squash yogurt yonkers yuca zucchini cookbooks leftovers snack snack week
+1             0      0       0    0        0         0         0     0          0
+  turkey
+1    0.0
+ [ reached getOption("max.print") -- omitted 3 rows ]
+
+Clustering vector:
+ [1] 3 2 3 3 1 4 4 2 2 4 4 1 1 2 4
+
+Within cluster sum of squares by cluster:
+[1]  1343915 47693929  3524547 15231691
+ (between_SS / total_SS =  89.0 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      
+> km.res$totss
+[1] 616086519
+> km.res$betweenss
+[1] 548292437
